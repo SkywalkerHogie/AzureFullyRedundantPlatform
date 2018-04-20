@@ -7,4 +7,4 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This template deploys an Two Application Gateway in front of two Azure Web Apps in two different regions.
+This template does the following deployments: Deploys 2 Web Application Gateways in front of the 2 Web Apps. Then it combines the DNS entries for both the App Gateways into a Traffic MGR for Global redundancy.
