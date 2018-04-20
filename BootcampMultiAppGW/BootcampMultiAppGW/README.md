@@ -7,4 +7,4 @@
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This template deploys an Application Gateway in front of two Azure Web Apps.
+This template deploys an Two Application Gateway in front of two Azure Web Apps in two different regions.
