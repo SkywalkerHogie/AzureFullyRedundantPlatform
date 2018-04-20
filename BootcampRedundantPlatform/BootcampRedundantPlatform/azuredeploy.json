@@ -100,7 +100,7 @@
     "applicationGatewayID2": "[resourceId('Microsoft.Network/applicationGateways',variables('applicationGatewayName2'))]",
 	"Location1": "Australia East",
 	"Location2": "Australia Southeast",
-	"TrafficMgrName": "trafficmgr",
+	"TrafficMgrName": "trafficmgr18",
 	"frontendhttpport": "80"
   },
   "resources": [
