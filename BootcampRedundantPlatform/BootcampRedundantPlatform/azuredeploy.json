@@ -98,8 +98,10 @@
     "subnetRef2": "[concat(variables('vnetID2'),'/subnets/',variables('subnetName2'))]",
     "publicIPRef2": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName2'))]",
     "applicationGatewayID2": "[resourceId('Microsoft.Network/applicationGateways',variables('applicationGatewayName2'))]",
-	  "Location1": "Australia East",
-	  "Location2": "Australia Southeast"
+	"Location1": "Australia East",
+	"Location2": "Australia Southeast",
+	"TrafficMgrName": "trafficmgr",
+	"frontendhttpport": "80"
   },
   "resources": [
     {
@@ -402,6 +404,59 @@
             }
           }
         ]
+      }
+    },
+	    {
+      "name": "[variables('TrafficMgrName')]",
+      "type": "Microsoft.Network/trafficManagerProfiles",
+      "apiVersion": "2017-05-01",
+      "location": "global",
+      "dependsOn": [
+        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName1'))]",
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]",
+        "[concat('Microsoft.Network/applicationGateways/', variables('applicationGatewayName'))]",
+        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName2'))]",
+        "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName2'))]",
+        "[concat('Microsoft.Network/applicationGateways/', variables('applicationGatewayName2'))]"
+      ],
+      "tags": {},
+      "scale": null,
+      "properties": {
+        "profileStatus": "Enabled",
+        "trafficRoutingMethod": "Priority",
+        "dnsConfig": {
+          "relativeName": "[variables('TrafficMgrName')]",
+          "ttl": 30
+        },
+        "monitorConfig": {
+          "protocol": "HTTP",
+          "port": "[variables('frontendhttpport')]",
+          "path": "/",
+          "intervalInSeconds": 30,
+          "toleratedNumberOfFailures": 3,
+          "timeoutInSeconds": 10
+        },
+        "endpoints": [
+          {
+            "name": "[variables('applicationGatewayName')]",
+            "type": "Microsoft.Network/trafficManagerProfiles/azureEndpoints",
+            "properties": {
+              "endpointStatus": "Enabled",
+              "targetResourceId": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]",
+              "weight": 1
+            }
+          },
+          {
+            "name": "[variables('applicationGatewayName2')]",
+            "type": "Microsoft.Network/trafficManagerProfiles/azureEndpoints",
+            "properties": {
+              "endpointStatus": "Enabled",
+              "targetResourceId": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName2'))]",
+              "weight": 1
+            }
+          }
+        ]
+
       }
     }
   ]
