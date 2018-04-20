@@ -351,7 +351,7 @@
               "PickHostNameFromBackendAddress":true,
               "ProbeEnabled":"[parameters('probeEnabled')]",
               "Probe": {
-                "id": "[concat(variables('applicationGatewayID'), '/probes/Probe1')]"
+                "id": "[concat(variables('applicationGatewayID2'), '/probes/Probe1')]"
               }
             }
           }
