@@ -89,8 +89,8 @@
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
     "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]",
     "publicIPRef": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]",
-    "applicationGatewayID": "[resourceId('Microsoft.Network/applicationGateways',variables('applicationGatewayName'))]"
-	"applicationGatewayName2": "applicationGateway2",
+    "applicationGatewayID": "[resourceId('Microsoft.Network/applicationGateways',variables('applicationGatewayName'))]",
+	  "applicationGatewayName2": "applicationGateway2",
     "publicIPAddressName2": "publicIp2",
     "virtualNetworkName2": "virtualNetwork2",
     "subnetName2": "appGatewaySubnet2",
@@ -98,8 +98,8 @@
     "subnetRef2": "[concat(variables('vnetID2'),'/subnets/',variables('subnetName2'))]",
     "publicIPRef2": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName2'))]",
     "applicationGatewayID2": "[resourceId('Microsoft.Network/applicationGateways',variables('applicationGatewayName2'))]",
-	"Location1" = "Australia East".
-	"Location2" = "Australia Southeast".
+	  "Location1": "Australia East",
+	  "Location2": "Australia Southeast"
   },
   "resources": [
     {
@@ -403,6 +403,6 @@
           }
         ]
       }
-    },
+    }
   ]
 }
